@@ -4,7 +4,12 @@ VERSIONED_FLYLINE_LIB="/opt/homebrew/Cellar/flyline/${FLYLINE_VERSION}/lib/bash/
 HOMEBREW_LIB_LINKS_DIR="/opt/homebrew/lib"
 LINKED_FLYLINE_LIB="${HOMEBREW_LIB_LINKS_DIR}/flyline.dylib"
 
-ln -s "${VERSIONED_FLYLINE_LIB}" "${LINKED_FLYLINE_LIB}"
+if [[ -L "${LINKED_FLYLINE_LIB}" ]]; then
+  LINK_MESSAGE="Flyline is already linked to '${VERSIONED_FLYLINE_LIB}'"
+  echo -e "\n\e[33m${LINK_MESSAGE}!\e[0m\n"
+else
+  ln -s "${VERSIONED_FLYLINE_LIB}" "${LINKED_FLYLINE_LIB}"
+fi
 
 # Conveniently dump the rc configuration for flyline to STDOUT.
 cat <<-RC_CODE
