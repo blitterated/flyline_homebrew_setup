@@ -11,4 +11,3 @@ cat <<-RC_CODE
 	Add the following to your bash startup file:
 	enable -f "${LINKED_FLYLINE_LIB}" "${FLYLINE_INVOCATION}"
 	RC_CODE
-errcho "9" # DBG
