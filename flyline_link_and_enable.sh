@@ -15,8 +15,7 @@ HOMEBREW_LIB_LINKS_DIR="/opt/homebrew/lib"
 LINKED_FLYLINE_LIB="${HOMEBREW_LIB_LINKS_DIR}/flyline.dylib"
 
 if [[ -L "${LINKED_FLYLINE_LIB}" ]]; then
-  LINK_MESSAGE="Flyline is already linked to '${VERSIONED_FLYLINE_LIB}'"
-  echo -e "\n\e[33m${LINK_MESSAGE}!\e[0m\n"
+  echo "Flyline is already linked to '$(readlink -f %R "${LINKED_FLYLINE_LIB}")'"
 else
   ln -s "${VERSIONED_FLYLINE_LIB}" "${LINKED_FLYLINE_LIB}"
 fi
